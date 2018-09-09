@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_notes -> switchFragment(NotesFragment())
-            R.id.navigation_complete -> toast("complete")
+            R.id.navigation_complete -> switchFragment(CompleteFragment())
             R.id.navigation_settings -> toast("settings")
             
             else -> return@OnNavigationItemSelectedListener false
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
+        switchFragment(NotesFragment())
     }
     
     fun switchFragment(f: Fragment) {

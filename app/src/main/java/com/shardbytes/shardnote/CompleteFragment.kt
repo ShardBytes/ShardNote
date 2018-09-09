@@ -5,11 +5,22 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.jetbrains.anko.support.v4.toast
 
 class CompleteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_complete, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        toast("complete resumed")
+    }
+
+    override fun onPause() {
+        toast("complete paused")
+        super.onPause()
     }
 
 }
