@@ -6,23 +6,41 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
     
+    private val VIEWPAGER_PAGECOUNT = 3
     private lateinit var viewPagerAdapter: PagerAdapter
+    
+    
+    private val notesFragment: NotesFragment by lazy { NotesFragment() }
+    private val completeFragment: CompleteFragment by lazy { CompleteFragment() }
+    private val settingsFragment: SettingsFragment by lazy { SettingsFragment() }
+    
+    // model
 
+    // activity
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
+        // setup viewpager
+        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        viewPager.adapter = viewPagerAdapter
+        viewPager.addOnPageChangeListener(onPageChangeListener)
 
         // setup navigation listener
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
-        
-        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.adapter = viewPagerAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("Core", "activity resumed")
     }
     
     // --- specific
@@ -38,16 +56,29 @@ class MainActivity : AppCompatActivity() {
         true
     }
     
+    private val onPageChangeListener = object : ViewPager.OnPageChangeListener {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+        override fun onPageSelected(position: Int) {
+            if (position < VIEWPAGER_PAGECOUNT) {
+                navigation.menu.getItem(position).isChecked = true
+            }
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {}
+
+    }
+    
     // --- adapters
     
-    inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+    private inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment = when(position) {
-            0 -> NotesFragment()
-            1 -> CompleteFragment()
-            2 -> SettingsFragment()
+            0 -> notesFragment
+            1 -> completeFragment
+            2 -> settingsFragment
             
-            else -> NotesFragment()
+            else -> notesFragment
         }
 
         // COUNT OF ALL PAGES !

@@ -1,17 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         
+        
         <item name="cardViewStyle">@style/CardView</item>
         <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
-        
-        <!-- if on lollipop, color it black, we're not marshmallow yet -->
-        <item name="android:statusBarColor" tools:targetApi="21">@android:color/black</item>
-    </style>
 
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+    </style>
+    
 </resources>
