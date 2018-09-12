@@ -15,13 +15,6 @@ class MainActivity : AppCompatActivity()  {
     
     private val VIEWPAGER_PAGECOUNT = 3
     private lateinit var viewPagerAdapter: PagerAdapter
-    
-    
-    private val notesFragment: NotesFragment by lazy { NotesFragment() }
-    private val completeFragment: CompleteFragment by lazy { CompleteFragment() }
-    private val settingsFragment: SettingsFragment by lazy { SettingsFragment() }
-    
-    // model
 
     // activity
     
@@ -74,11 +67,11 @@ class MainActivity : AppCompatActivity()  {
     private inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment = when(position) {
-            0 -> notesFragment
-            1 -> completeFragment
-            2 -> settingsFragment
+            0 -> NotesFragment()
+            1 -> CompleteFragment()
+            2 -> SettingsFragment()
             
-            else -> notesFragment
+            else -> NotesFragment()
         }
 
         // COUNT OF ALL PAGES !
