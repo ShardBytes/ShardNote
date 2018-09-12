@@ -36,8 +36,4 @@ class CompleteFragment : Fragment() {
         }
     }
 
-    fun onSharedModelChanged() {
-        
-    }
-
 }

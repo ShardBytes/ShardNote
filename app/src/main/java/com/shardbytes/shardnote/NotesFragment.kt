@@ -37,8 +37,4 @@ class NotesFragment : Fragment()  {
         }
     }
 
-    fun onSharedModelChanged() {
-        
-    }
-
 }

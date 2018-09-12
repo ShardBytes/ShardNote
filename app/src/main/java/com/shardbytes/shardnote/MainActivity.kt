@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity()  {
         }
 
         // COUNT OF ALL PAGES !
-        override fun getCount() = 3
+        override fun getCount() = VIEWPAGER_PAGECOUNT
         
     }
 }

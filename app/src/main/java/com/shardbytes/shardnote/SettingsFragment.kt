@@ -41,8 +41,4 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    fun onSharedModelChanged() {
-        
-    }
-
 }
